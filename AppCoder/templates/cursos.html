@@ -1,8 +1,17 @@
 {% extends "padre.html" %}
-        {% load static %}
+    {% load static %}
     {% block contenidoQueCambia %}
 
     <!-- Aqui va el contenido qeu cambia, y lo asocio a la vista -->
     <h1> Este es el titulo de profesores</h1>
     <p> Cursos</p>
+    <table class="table">
+        <tr><th>Curso</th><th>Camada</th></tr>
+            {% for curso in lista_cursos %}
+            <tr>
+                <td>{{curso.nombre}}</td>
+                <td>{{curso.camada}}</td>
+            </tr>
+            {% endfor %}
+        </table>
     {% endblock %}

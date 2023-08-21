@@ -10,6 +10,7 @@ urlpatterns = [
     path('estudiantes', views.estudiantes, name="Estudiantes"),
     path('entregables', views.entregables, name="Entregables"),
     path('cursoFormulario', views.cursoFormulario, name="CursoFormulario"),
+    path('profesorFormulario', views.profesorFormulario, name="ProfesorFormulario"),
     # path('agrega-curso/<nombre>/<camada>', curso),
     # path('', inicio),
     # path('cursos', cursos),

@@ -1,0 +1,18 @@
+<h1>Formulario - Agregar Profesor</h1>
+{% if miFormulario.errors %}
+  
+    <p style="color:red">Estan mal los datos!</p>
+
+{% endif %}
+
+<form action="" method="post">{% csrf_token %}
+
+    <table>
+
+        {{ miFormulario.as_table }}
+
+    </table>
+
+    <input type="submit" value="Enviar">
+</form>
+    

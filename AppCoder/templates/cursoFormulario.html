@@ -1,37 +1,26 @@
-<!--<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario - Agregar Curso</title>
-</head>
-<body>
-    <form action="cursoFormulario" method="post">{% csrf_token %}
+{% extends 'padre.html' %}
 
-        <p> Curso: <input type="text" name="nombre"></p>
+{% load static %}
 
-        <p> Camada: <input type="text" name="camada"></p>
+{% block contenidoQueCambia %}
 
-        <input type="submit" name="Enviar">
-    </form>
-</body>
-</html>
--->
+    {% if miFormulario.errors %}
 
-{% if miFormulario.errors %}
-  
     <p style="color:red">Estan mal los datos!</p>
 
-{% endif %}
+    {% endif %}
 
-<form action="" method="post">{% csrf_token %}
+    <form action="" method="post">{% csrf_token %}
+        
+        <!-- Acá está la magia de Django!-->
 
-    <table>
+        <table>
+            
+            {{ miFormulario.as_table }}
+            
+        </table>
+        
+        <input type="submit" value="Enviar">
+    </form>
 
-        {{ miFormulario.as_table }}
-
-    </table>
-
-    <input type="submit" value="Enviar">
-</form>
-    
+{% endblock %}
