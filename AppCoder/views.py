@@ -50,7 +50,8 @@ def cursos(request):
 
 def profesores(req):
 
-    return render(req, 'profesores.html')
+    listaProfesores = Profesor.objects.all()
+    return render(req, 'profesores.html', {"lista_profesores": listaProfesores})
 
 def estudiantes(req):
 
