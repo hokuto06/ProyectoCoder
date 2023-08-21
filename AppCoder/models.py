@@ -18,6 +18,13 @@ class Estudiante(models.Model):
     apellido = models.CharField(null=True, max_length=30)
     email = models.EmailField(null=True)
     profesion = models.CharField(null=True, max_length=30)
+
+class Profesor(models.Model):
+    
+    nombre = models.CharField(max_length=50)
+    apellido = models.CharField(null=True, max_length=30)
+    email = models.EmailField(null=True)
+    profesion = models.CharField(null=True, max_length=30)
     
 class Entregable(models.Model):
 
