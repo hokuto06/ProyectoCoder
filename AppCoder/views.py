@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Curso, Profesor
 from .forms import CursoFormulario, ProfesorFormulario
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import login, logout, authenticate
 
 # Create your views here.
 def curso(req, nombre, camada):
@@ -113,3 +115,45 @@ def profesorFormulario(request):
         miFormulario = ProfesorFormulario()
 
     return render(request, "profesorFormulario.html", {"miFormulario": miFormulario})
+
+def login_request(request):
+    
+    if request.method == "POST":
+        form = AuthenticationForm(request, data = request.POST)
+
+        if form.is_valid():
+            usuario = form.cleaned_data.get('username')
+            contra = form.cleaned_data.get('password')
+
+            user = authenticate(username=usuario, password=contra)
+
+            if user is not None:
+                login(request, user)
+
+                return render(request, "inicio.html", {"mensaje": f'Bienvenido {usuario}'})
+            else:
+
+                return render(request, "inicio.html", {"mensaje": f'Error, datos incorrectos'})        
+        else:
+
+            return render(request, "inicio.html", {"mensaje": f'Error, Formulario incorrecto'})
+    
+    form = AuthenticationForm()
+
+    return render(request, "login.html", {"form": form})
+
+def register(request):
+
+    if request.method == 'POST':
+
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+
+            username = form.cleaned_data['username']
+            form.save()
+            return render(request, "inicio.html")
+        
+    else:
+        form = UserCreationForm()
+
+    return render(request,"registro.html", {"form":form})
